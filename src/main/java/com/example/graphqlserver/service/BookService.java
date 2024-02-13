@@ -1,15 +1,28 @@
 package com.example.graphqlserver.service;
 
+import com.example.graphqlserver.dto.AuthorRequest;
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.entity.Book;
 
 public interface BookService {
 
-    public Book bookById(Integer id);
+    Book bookById(Integer id);
 
-    public Iterable<Book> getAllBooks();
+    Iterable<Book> getAllBooks();
 
-    public Author authorById(Integer id);
+    Author authorById(Integer id);
 
-    public Iterable<Author> getAllAuthors();
+    Iterable<Author> getAllAuthors();
+
+    void deleteBookById(Integer id);
+
+    Book addBook(Book b);
+
+    Book updateBook(Book book);
+
+    Author addAuthor(Author author);
+
+    Author updateAuthor(Integer id, Author author);
+
+    void deleteAuthor(Integer id);
 }

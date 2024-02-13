@@ -37,4 +37,33 @@ public class BookServiceImpl implements BookService{
     public Iterable<Author> getAllAuthors() {
         return authorRepository.findAll();
     }
+
+    public void deleteBookById(Integer id) {
+        bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Book addBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Book updateBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Author addAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public Author updateAuthor(Integer id, Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public void deleteAuthor(Integer id) {
+        authorRepository.deleteById(id);
+    }
 }

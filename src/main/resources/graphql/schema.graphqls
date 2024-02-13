@@ -5,6 +5,16 @@ type Query {
     getAllAuthors : [Author]
 }
 
+type Mutation {
+    addBook(bookRequest: BookRequest): Book
+    updateBook(id: Int, bookRequest: BookRequest): Book
+    deleteBook(id: Int): Book
+
+    addAuthor(authorRequest: AuthorRequest): Author
+    updateAuthor(id: Int, authorRequest: AuthorRequest): Author
+    deleteAuthor(id: Int): Author
+}
+
 type Book{
     book_id: Int
     name: String
@@ -17,4 +27,15 @@ type Author{
     firstName: String
     lastName: String
     books: [Book]
+}
+
+input BookRequest{
+    name: String
+    pageCount: Int
+    authorId: Int
+}
+
+input AuthorRequest{
+    firstName: String
+    lastName: String
 }
