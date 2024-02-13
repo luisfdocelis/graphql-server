@@ -2,27 +2,26 @@ package com.example.graphqlserver.entity;
 
 import jakarta.persistence.*;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "book")
-@Setter
-@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Builder
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer book_id;
 
     @Column(name = "name", nullable = false, length = 255, unique = false)
     private String name;
 
     @Column(name = "pagecount", nullable = false)
-    private Long pageCount;
+    private Integer pageCount;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "authorid")
-    private Author authorid;
+    @JoinColumn(name = "author_id")
+    private Author author;
 }
