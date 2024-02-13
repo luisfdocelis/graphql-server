@@ -1,7 +1,7 @@
 type Query {
     bookById(id: Int): Book
     getAllBooks : [Book]
-    authorById(id: ID) : Author
+    authorById(id: Int) : Author
     getAllAuthors : [Author]
 }
 
@@ -16,14 +16,14 @@ type Mutation {
 }
 
 type Book{
-    book_id: Int
+    bookId: Int
     name: String
     pageCount: Int
     author: Author
 }
 
 type Author{
-    author_id: Int
+    authorId: Int
     firstName: String
     lastName: String
     books: [Book]

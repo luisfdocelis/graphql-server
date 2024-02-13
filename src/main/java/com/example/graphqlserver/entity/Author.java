@@ -16,12 +16,12 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer author_id;
+    private Integer authorId;
 
-    @Column(name = "firstname", nullable = false, length = 128, unique = false)
+    @Column(name = "firstname", nullable = false, length = 128)
     private String firstName;
 
-    @Column(name = "lastname", nullable = false, length = 128, unique = false)
+    @Column(name = "lastname", nullable = false, length = 128)
     private String lastName;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)

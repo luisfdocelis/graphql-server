@@ -13,7 +13,7 @@ import lombok.*;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer book_id;
+    private Integer bookId;
 
     @Column(name = "name", nullable = false, length = 255, unique = false)
     private String name;
@@ -22,6 +22,6 @@ public class Book {
     private Integer pageCount;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "authorId")
     private Author author;
 }
