@@ -1,12 +1,20 @@
-query bookDetails($id: ID) {
-    bookById(id: $id) {
-        id
-        name
-        pageCount
-        author {
-            id
-            firstName
-            lastName
-        }
-    }
+type Query {
+    bookById(id: Int): Book
+    getAllBooks : [Book]
+    authorById(id: ID) : Author
+    getAllAuthors : [Author]
+}
+
+type Book{
+    id: Int
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author{
+    id: Int
+    firstName: String
+    lastName: String
+    books: [Book]
 }
