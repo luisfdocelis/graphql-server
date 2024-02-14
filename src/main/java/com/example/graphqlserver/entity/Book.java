@@ -16,6 +16,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -42,10 +43,10 @@ public class Book {
     private Author author;
 
     @CreationTimestamp
-    @Column(name = "create_dte")
-    private Date createDte;
+    @Column(name = "create_dte", updatable = false)
+    private LocalDateTime createDte;
 
     @UpdateTimestamp
-    @Column(name = "update_dte")
-    private Date updateDte;
+    @Column(name = "update_dte", insertable = false)
+    private LocalDateTime updateDte;
 }
