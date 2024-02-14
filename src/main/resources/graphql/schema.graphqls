@@ -16,14 +16,14 @@ type Mutation {
 }
 
 type Book{
-    bookId: Int
+    id: Int
     name: String
     pageCount: Int
     author: Author
 }
 
 type Author{
-    authorId: Int
+    id: Int
     firstName: String
     lastName: String
     books: [Book]

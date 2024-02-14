@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,27 +22,28 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "author")
+@Table(name = "bookstore")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Author {
+public class BookStore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "bookstore_id")
     private Integer id;
 
-    @Column(name = "firstname", nullable = false, length = 128)
-    private String firstName;
+    @Column(name = "store_name", unique = true, nullable = false )
+    private String name;
 
-    @Column(name = "lastname", nullable = false, length = 128)
-    private String lastName;
+    @OneToOne()
+    @JoinColumn(name = "address_id")
+    private Address address;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Book> books;
+    @OneToMany(mappedBy = "bookstore", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Phone> phones;
 
     @CreationTimestamp
     @Column(name = "create_dte")
@@ -49,4 +52,5 @@ public class Author {
     @UpdateTimestamp
     @Column(name = "update_dte")
     private Date updateDte;
+
 }

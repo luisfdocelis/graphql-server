@@ -1,6 +1,5 @@
 package com.example.graphqlserver.service;
 
-import com.example.graphqlserver.dto.AuthorRequest;
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.entity.Book;
 
