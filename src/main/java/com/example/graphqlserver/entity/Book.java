@@ -31,7 +31,7 @@ public class Book {
     @Column(name = "book_id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "pagecount", nullable = false)
