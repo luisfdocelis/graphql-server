@@ -1,3 +1,6 @@
+scalar LocalDateTime
+
+
 type Query {
     bookById(id: Int): Book
     getAllBooks : [Book]
@@ -20,13 +23,17 @@ type Book{
     name: String
     pageCount: Int
     author: Author
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
 }
 
 type Author{
     id: Int
     firstName: String
     lastName: String
-    books: [Book]
+    books: [Book],
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
 }
 
 input BookRequest{
