@@ -5,23 +5,23 @@ import com.example.graphqlserver.entity.Book;
 
 public interface BookService {
 
-    Book bookById(Integer id);
+    Book bookById(final Integer id);
 
     Iterable<Book> getAllBooks();
 
-    Author authorById(Integer id);
+    Author authorById(final Integer id);
 
     Iterable<Author> getAllAuthors();
 
-    void deleteBookById(Integer id);
+    void deleteBookById(final Integer id);
 
-    Book addBook(Book b);
+    Book addBook(final Book b);
 
-    Book updateBook(Book book);
+    Book updateBook(final Book book);
 
-    Author addAuthor(Author author);
+    Author addAuthor(final Author author);
 
-    Author updateAuthor(Integer id, Author author);
+    Author updateAuthor(final Integer id, final Author author);
 
-    void deleteAuthor(Integer id);
+    void deleteAuthor(final Integer id);
 }

@@ -32,17 +32,17 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public void deleteBookById(Integer id) {
+    public void deleteBookById(final Integer id) {
         bookRepository.deleteById(id);
     }
 
     @Override
-    public Book addBook(Book book) {
+    public Book addBook(final Book book) {
         return bookRepository.save(book);
     }
 
     @Override
-    public Book updateBook(Book book) {
+    public Book updateBook(final Book book) {
         return bookRepository.save(book);
     }
 
@@ -59,17 +59,17 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Author addAuthor(Author author) {
+    public Author addAuthor(final Author author) {
         return authorRepository.save(author);
     }
 
     @Override
-    public Author updateAuthor(Integer id, Author author) {
+    public Author updateAuthor(final Integer id, final Author author) {
         return authorRepository.save(author);
     }
 
     @Override
-    public void deleteAuthor(Integer id) {
+    public void deleteAuthor(final Integer id) {
         authorRepository.deleteById(id);
     }
 }
