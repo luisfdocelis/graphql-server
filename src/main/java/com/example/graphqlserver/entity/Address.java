@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,30 +18,47 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
-@Table(name = "author")
+@Table(name = "address")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Author {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "address_id")
     private Integer id;
 
-    @Column(name = "firstname", nullable = false, length = 128)
-    private String firstName;
+    @Column(name = "street")
+    private String street;
 
-    @Column(name = "lastname", nullable = false, length = 128)
-    private String lastName;
+    @Column(name = "primary_number")
+    private String primaryNumber;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Book> books;
+    @Column(name = "internal_number")
+    private String internalNumber;
+
+    @Column(name = "building_name")
+    private String buildingName;
+
+    @Column(name = "locality")
+    private String locality;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zip")
+    private String zip;
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "address")
+    private BookStore bookStore;
 
     @CreationTimestamp
     @Column(name = "create_dte", updatable = false)

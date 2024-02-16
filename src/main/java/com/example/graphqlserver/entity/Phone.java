@@ -1,12 +1,12 @@
 package com.example.graphqlserver.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,30 +18,30 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
-@Table(name = "author")
+@Table(name = "phone")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Author {
+public class Phone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "phone_id")
     private Integer id;
 
-    @Column(name = "firstname", nullable = false, length = 128)
-    private String firstName;
+    @Column(name = "number")
+    private String number;
 
-    @Column(name = "lastname", nullable = false, length = 128)
-    private String lastName;
+    @Column(name = "type")
+    private String type;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Book> books;
+    @ManyToOne()
+    @JoinColumn(name = "bookstore_id")
+    private BookStore bookstore;
 
     @CreationTimestamp
     @Column(name = "create_dte", updatable = false)

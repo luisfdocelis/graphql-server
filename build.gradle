@@ -20,9 +20,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	implementation 'com.graphql-java:graphql-java-extended-scalars:21.0'
+
+	implementation 'org.jetbrains:annotations:24.1.0'
+
 	implementation 'com.h2database:h2'
 	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
 	implementation 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

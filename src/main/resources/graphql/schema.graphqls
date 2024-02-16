@@ -1,20 +1,48 @@
+scalar LocalDateTime
+
+
 type Query {
     bookById(id: Int): Book
     getAllBooks : [Book]
-    authorById(id: ID) : Author
+    authorById(id: Int) : Author
     getAllAuthors : [Author]
 }
 
+type Mutation {
+    addBook(bookRequest: BookRequest): Book
+    updateBook(id: Int, bookRequest: BookRequest): Book
+    deleteBook(id: Int): Book
+
+    addAuthor(authorRequest: AuthorRequest): Author
+    updateAuthor(id: Int, authorRequest: AuthorRequest): Author
+    deleteAuthor(id: Int): Author
+}
+
 type Book{
-    book_id: Int
+    id: Int
     name: String
     pageCount: Int
     author: Author
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
 }
 
 type Author{
-    author_id: Int
+    id: Int
     firstName: String
     lastName: String
-    books: [Book]
+    books: [Book],
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
+input BookRequest{
+    name: String
+    pageCount: Int
+    authorId: Int
+}
+
+input AuthorRequest{
+    firstName: String
+    lastName: String
 }
