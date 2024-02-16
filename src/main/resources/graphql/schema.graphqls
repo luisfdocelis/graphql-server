@@ -1,11 +1,11 @@
 scalar LocalDateTime
 
-
 type Query {
     bookById(id: Int): Book
     getAllBooks : [Book]
     authorById(id: Int) : Author
     getAllAuthors : [Author]
+
 }
 
 type Mutation {
@@ -16,6 +16,9 @@ type Mutation {
     addAuthor(authorRequest: AuthorRequest): Author
     updateAuthor(id: Int, authorRequest: AuthorRequest): Author
     deleteAuthor(id: Int): Author
+
+    signin(request: SigninRequest): JwtAuthenticationResponse
+    signup(request: SignUpRequest): JwtAuthenticationResponse
 }
 
 type Book{
@@ -36,6 +39,10 @@ type Author{
     updateDte: LocalDateTime
 }
 
+type JwtAuthenticationResponse{
+    token: String
+}
+
 input BookRequest{
     name: String
     pageCount: Int
@@ -45,4 +52,16 @@ input BookRequest{
 input AuthorRequest{
     firstName: String
     lastName: String
+}
+
+input SigninRequest{
+    email: String
+    password: String
+}
+
+input SignUpRequest{
+    firstName: String
+    lastName: String
+    email: String
+    password: String
 }
