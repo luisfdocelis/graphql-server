@@ -1,5 +1,6 @@
 package com.example.graphqlserver.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,15 +26,23 @@ import java.util.List;
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
+    @Column(name = "email", unique = true)
     private String email;
+
     private String password;
     @Enumerated(EnumType.STRING)
+
     private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -41,7 +50,6 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        // email in our case
         return email;
     }
 

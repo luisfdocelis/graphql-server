@@ -2,23 +2,27 @@ package com.example.graphqlserver.controller;
 
 
 import com.example.graphqlserver.entity.JwtAuthenticationResponse;
-import com.example.graphqlserver.entity.SignUpRequest;
-import com.example.graphqlserver.entity.SigninRequest;
+import com.example.graphqlserver.dto.SignUpRequest;
+import com.example.graphqlserver.dto.SigninRequest;
+import com.example.graphqlserver.service.AuthenticationServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
-@Controller public class SecurityController {
+@Controller
+public class SecurityController {
 
+    @Autowired
+    private AuthenticationServiceImpl authService;
 
-    @QueryMapping
-    public JwtAuthenticationResponse signin(@Argument  SigninRequest request) {
-        return null;
+    @MutationMapping
+    public JwtAuthenticationResponse signin(@Argument SigninRequest request) {
+        return authService.signin(request);
     }
 
-    @QueryMapping
+    @MutationMapping
     public JwtAuthenticationResponse signup(@Argument SignUpRequest request) {
-        return null;
+        return authService.signup(request);
     }
-
 }
