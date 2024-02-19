@@ -1,4 +1,4 @@
-package com.example.graphqlserver.security.config;
+package com.example.graphqlserver.security;
 
 
 import com.example.graphqlserver.filter.JwtAuthenticationFilter;
@@ -30,11 +30,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/graphiql/**").permitAll()
-                        .requestMatchers("/graphql/**").permitAll().anyRequest().authenticated()
-
-                )
+                        .requestMatchers("/graphql/**").permitAll().anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

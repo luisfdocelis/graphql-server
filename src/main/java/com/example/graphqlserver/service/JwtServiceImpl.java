@@ -18,8 +18,13 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtServiceImpl implements JwtService {
-    @Value("${token.signing.key}")
-    private String jwtSigningKey;
+
+    private final String jwtSigningKey;
+
+    public JwtServiceImpl(@Value("${token.signing.key}") final String jwtSigningKey) {
+        this.jwtSigningKey = jwtSigningKey;
+    }
+
     @Override
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
