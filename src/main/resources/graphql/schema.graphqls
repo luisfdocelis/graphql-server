@@ -6,6 +6,8 @@ type Query {
     authorById(id: Int) : Author
     getAllAuthors : [Author]
 
+    findByIdBookStore(id: Int): BookStore
+    findAllBookStore: [BookStore]
 }
 
 type Mutation {
@@ -19,6 +21,11 @@ type Mutation {
 
     signin(request: SigninRequest): JwtAuthenticationResponse
     signup(request: SignUpRequest): JwtAuthenticationResponse
+
+    addBookStore(bookStore: BookStoreRequest): BookStore
+    updateBookStore(id: Int, bookStore: BookStoreRequest): BookStore
+    deleteBookStore(id: Int): BookStore
+
 }
 
 type Book{
@@ -43,6 +50,39 @@ type JwtAuthenticationResponse{
     token: String
 }
 
+type BookStore{
+    id: Int
+    name: String
+    address: Address
+    phones: [Phone]
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
+type Address{
+    id: Int
+    street: String
+    primaryNumber: String
+    internalNumber: String
+    buildingName: String
+    locality: String
+    city: String
+    state: String
+    zip: String
+    bookStore: BookStore
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
+type Phone{
+    id: Int
+    number: String
+    type: String
+    bookstore: BookStore
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
 input BookRequest{
     name: String
     pageCount: Int
@@ -64,4 +104,26 @@ input SignUpRequest{
     lastName: String
     email: String
     password: String
+}
+
+input BookStoreRequest{
+    name: String
+}
+
+input AddressRequest{
+    street: String
+    primaryNumber: String
+    internalNumber: String
+    buildingName: String
+    locality: String
+    city: String
+    state: String
+    zip: String
+    bookstore: Int
+}
+
+input PhoneRequest{
+    number: String
+    type: String
+    bookstore: Int
 }

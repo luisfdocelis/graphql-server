@@ -1,4 +1,4 @@
-package com.example.graphqlserver.entity;
+package com.example.graphqlserver.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

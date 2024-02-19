@@ -1,6 +1,6 @@
 package com.example.graphqlserver.service;
 
-import com.example.graphqlserver.entity.JwtAuthenticationResponse;
+import com.example.graphqlserver.dto.JwtAuthenticationResponse;
 import com.example.graphqlserver.entity.Role;
 import com.example.graphqlserver.dto.SignUpRequest;
 import com.example.graphqlserver.dto.SigninRequest;
