@@ -1,11 +1,19 @@
 scalar LocalDateTime
 
-
 type Query {
     bookById(id: Int): Book
     getAllBooks : [Book]
     authorById(id: Int) : Author
     getAllAuthors : [Author]
+
+    findByIdBookStore(id: Int): BookStore
+    findAllBookStore: [BookStore]
+
+    findByIdAddress(id: Int): Address
+    findAllAddress: [Address]
+
+    findByIdPhone(id: Int): Phone
+    findAllPhone: [Phone]
 }
 
 type Mutation {
@@ -16,6 +24,21 @@ type Mutation {
     addAuthor(authorRequest: AuthorRequest): Author
     updateAuthor(id: Int, authorRequest: AuthorRequest): Author
     deleteAuthor(id: Int): Author
+
+    signin(request: SigninRequest): JwtAuthenticationResponse
+    signup(request: SignUpRequest): JwtAuthenticationResponse
+
+    addBookStore(bookStoreRequest: BookStoreRequest): BookStore
+    updateBookStore(id: Int, bookStoreRequest: BookStoreRequest): BookStore
+    deleteBookStore(id: Int): BookStore
+
+    createAddress(request: AddressRequest): Address
+    updateAddress(id: Int, request: AddressRequest): Address
+    deleteAddress(id: Int): Address
+
+    createPhone(request: PhoneRequest): Phone
+    updatePhone(id: Int, request: PhoneRequest): Phone
+    deletePhone(id: Int): Phone
 }
 
 type Book{
@@ -36,13 +59,91 @@ type Author{
     updateDte: LocalDateTime
 }
 
+type JwtAuthenticationResponse{
+    token: String
+}
+
+type BookStore{
+    id: Int
+    name: String
+    address: Address
+    phones: [Phone]
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
+type Address{
+    id: Int
+    street: String
+    primaryNumber: String
+    internalNumber: String
+    buildingName: String
+    locality: String
+    city: String
+    state: String
+    zip: String
+    bookStore: BookStore
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
+type Phone{
+    id: Int
+    number: String
+    type: String
+    bookstore: BookStore
+    createDte: LocalDateTime
+    updateDte: LocalDateTime
+}
+
 input BookRequest{
+    id: Int!
     name: String
     pageCount: Int
     authorId: Int
 }
 
 input AuthorRequest{
+    id: Int!
     firstName: String
     lastName: String
+}
+
+input SigninRequest{
+    id: Int!
+    email: String
+    password: String
+}
+
+input SignUpRequest{
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+}
+
+input BookStoreRequest{
+    id: Int!
+    name: String
+    address: Int!
+}
+
+input AddressRequest{
+    id: Int!
+    street: String
+    primaryNumber: String
+    internalNumber: String
+    buildingName: String
+    locality: String
+    city: String
+    state: String
+    zip: String
+    bookstore: Int!
+}
+
+input PhoneRequest{
+    id: Int!
+    number: String
+    type: String
+    bookstore: Int!
 }

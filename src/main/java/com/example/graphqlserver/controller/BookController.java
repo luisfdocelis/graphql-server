@@ -1,7 +1,7 @@
 package com.example.graphqlserver.controller;
 
-import com.example.graphqlserver.dto.AuthorRequest;
-import com.example.graphqlserver.dto.BookRequest;
+import com.example.graphqlserver.dto.request.AuthorRequest;
+import com.example.graphqlserver.dto.request.BookRequest;
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.entity.Book;
 import com.example.graphqlserver.service.BookService;
@@ -10,7 +10,6 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
 
 @Controller
 public class BookController {
@@ -92,5 +91,4 @@ public class BookController {
         service.deleteAuthor(id);
         return author;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.graphqlserver.dto;
+package com.example.graphqlserver.dto.request;
 
 public record AuthorRequest(
     Integer  authorId,
