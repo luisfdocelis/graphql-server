@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,8 +29,12 @@ public class SecurityConfiguration {
     private final UserService userService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.headers(heads -> heads.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/graphiql/**").permitAll()
                         .requestMatchers("/graphql/**").permitAll().anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

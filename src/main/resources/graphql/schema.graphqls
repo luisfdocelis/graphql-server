@@ -8,6 +8,12 @@ type Query {
 
     findByIdBookStore(id: Int): BookStore
     findAllBookStore: [BookStore]
+
+    findByIdAddress(id: Int): Address
+    findAllAddress: [Address]
+
+    findByIdPhone(id: Int): Phone
+    findAllPhone: [Phone]
 }
 
 type Mutation {
@@ -22,10 +28,17 @@ type Mutation {
     signin(request: SigninRequest): JwtAuthenticationResponse
     signup(request: SignUpRequest): JwtAuthenticationResponse
 
-    addBookStore(bookStore: BookStoreRequest): BookStore
-    updateBookStore(id: Int, bookStore: BookStoreRequest): BookStore
+    addBookStore(bookStoreRequest: BookStoreRequest): BookStore
+    updateBookStore(id: Int, bookStoreRequest: BookStoreRequest): BookStore
     deleteBookStore(id: Int): BookStore
 
+    createAddress(request: AddressRequest): Address
+    updateAddress(id: Int, request: AddressRequest): Address
+    deleteAddress(id: Int): Address
+
+    createPhone(request: PhoneRequest): Phone
+    updatePhone(id: Int, request: PhoneRequest): Phone
+    deletePhone(id: Int): Phone
 }
 
 type Book{
@@ -84,17 +97,20 @@ type Phone{
 }
 
 input BookRequest{
+    id: Int!
     name: String
     pageCount: Int
     authorId: Int
 }
 
 input AuthorRequest{
+    id: Int!
     firstName: String
     lastName: String
 }
 
 input SigninRequest{
+    id: Int!
     email: String
     password: String
 }
@@ -107,10 +123,13 @@ input SignUpRequest{
 }
 
 input BookStoreRequest{
+    id: Int!
     name: String
+    address: Int!
 }
 
 input AddressRequest{
+    id: Int!
     street: String
     primaryNumber: String
     internalNumber: String
@@ -119,11 +138,12 @@ input AddressRequest{
     city: String
     state: String
     zip: String
-    bookstore: Int
+    bookstore: Int!
 }
 
 input PhoneRequest{
+    id: Int!
     number: String
     type: String
-    bookstore: Int
+    bookstore: Int!
 }

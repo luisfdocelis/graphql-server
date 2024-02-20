@@ -1,7 +1,7 @@
 package com.example.graphqlserver.controller;
 
-import com.example.graphqlserver.dto.AuthorRequest;
-import com.example.graphqlserver.dto.BookRequest;
+import com.example.graphqlserver.dto.request.AuthorRequest;
+import com.example.graphqlserver.dto.request.BookRequest;
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.entity.Book;
 import com.example.graphqlserver.service.BookService;

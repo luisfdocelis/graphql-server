@@ -1,6 +1,6 @@
 package com.example.graphqlserver.service;
 
-import com.example.graphqlserver.dto.BookStoreRequest;
+import com.example.graphqlserver.dto.request.BookStoreRequest;
 import com.example.graphqlserver.entity.BookStore;
 import com.example.graphqlserver.repository.BookStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;

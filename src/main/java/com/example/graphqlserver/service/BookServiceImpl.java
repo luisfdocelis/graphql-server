@@ -5,9 +5,9 @@ import com.example.graphqlserver.entity.Book;
 import com.example.graphqlserver.repository.AuthorRepository;
 import com.example.graphqlserver.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class BookServiceImpl implements BookService{
 
     private final AuthorRepository authorRepository;

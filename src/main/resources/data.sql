@@ -183,6 +183,8 @@ ON AUTHOR.FIRSTNAME = T.FIRSTNAME
 AND AUTHOR.LASTNAME = T.LASTNAME
 ORDER BY NAME;
 
+-- INSERT INTO _USER ( email, first_name, last_name, password) VALUES ( 'luis.celis@live.com.mx', 'Luis', 'Celis', 'q1w2e3r4' );
+
 CREATE VIEW BOOK_AUTHOR AS
 SELECT
     B.BOOK_ID,

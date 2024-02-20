@@ -1,10 +1,11 @@
 package com.example.graphqlserver.controller;
 
-import com.example.graphqlserver.dto.BookStoreRequest;
+import com.example.graphqlserver.dto.request.BookStoreRequest;
 import com.example.graphqlserver.entity.BookStore;
 import com.example.graphqlserver.service.BookStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -18,12 +19,12 @@ public class BookStoreController {
         this.service = service;
     }
 
-    @QueryMapping
-    public BookStore addBookStore(@Argument final BookStoreRequest request) {
-        return service.create(request);
+    @MutationMapping
+    public BookStore addBookStore(@Argument final BookStoreRequest bookStoreRequest) {
+        return service.create(bookStoreRequest);
     }
 
-    @QueryMapping
+    @MutationMapping
     public BookStore updateBookStore(@Argument final Integer id, @Argument final BookStoreRequest request) {
         return service.update(id, request);
     }
@@ -38,7 +39,7 @@ public class BookStoreController {
         return service.findById(id);
     }
 
-    @QueryMapping
+    @MutationMapping
     public BookStore deleteBookStore(@Argument final Integer id){
         return service.delete(id);
     }
