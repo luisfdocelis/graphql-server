@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,33 +19,47 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "book")
+@Table(name = "customer")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Book {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    private Integer id;
+    @Column(name = "customer_id", nullable = false)
+    private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Column(name = "pagecount", nullable = false)
-    private Integer pageCount;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @ManyToOne()
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @ManyToMany
-    private List<Supplier> suppliers;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "middle_name")
+    private String middleName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "tax_id")
+    private String taxId;
+
+    @Column(name = "dob")
+    private LocalDateTime dob;
+
+    @OneToMany
+    private     Set<Sale> sale;
 
     @CreationTimestamp
     @Column(name = "create_dte", updatable = false)

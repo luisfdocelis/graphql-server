@@ -1,5 +1,6 @@
 package com.example.graphqlserver.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,33 +20,26 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "book")
+@Table(name = "sale")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Book {
+public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    private Integer id;
+    @Column(name = "sale_id", nullable = false)
+    private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    private Customer customer;
 
-    @Column(name = "pagecount", nullable = false)
-    private Integer pageCount;
-
-    @ManyToOne()
-    @JoinColumn(name = "author_id")
-    private Author author;
-
-    @ManyToMany
-    private List<Supplier> suppliers;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<SaleDetail> details;
 
     @CreationTimestamp
     @Column(name = "create_dte", updatable = false)
@@ -53,4 +48,5 @@ public class Book {
     @UpdateTimestamp
     @Column(name = "update_dte", insertable = false)
     private LocalDateTime updateDte;
+
 }

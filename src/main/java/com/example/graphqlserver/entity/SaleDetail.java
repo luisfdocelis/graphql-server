@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,33 +17,35 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "book")
+@Table(name = "sale_detail")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Book {
+public class SaleDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    private Integer id;
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "sale_id")
+    private Sale sale;
 
-    @Column(name = "pagecount", nullable = false)
-    private Integer pageCount;
+    @Column(name = "quantity", nullable = false)
+    private Double quantity;
 
-    @ManyToOne()
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @Column(name = "price", nullable = false)
+    private Double price;
 
-    @ManyToMany
-    private List<Supplier> suppliers;
+    @Column(name = "discount", nullable = false)
+    private Double discount;
+
+    @Column(name = "total", nullable = false)
+    private Double total;
 
     @CreationTimestamp
     @Column(name = "create_dte", updatable = false)
