@@ -1,9 +1,9 @@
 package com.example.graphqlserver.controller;
 
 
-import com.example.graphqlserver.dto.response.JwtAuthenticationResponse;
 import com.example.graphqlserver.dto.request.SignUpRequest;
 import com.example.graphqlserver.dto.request.SigninRequest;
+import com.example.graphqlserver.dto.response.JwtAuthenticationResponse;
 import com.example.graphqlserver.service.AuthenticationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
