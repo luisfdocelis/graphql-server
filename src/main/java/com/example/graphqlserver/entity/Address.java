@@ -56,6 +56,12 @@ public class Address {
     @Column(name = "zip")
     private String zip;
 
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lon")
+    private Double lon;
+
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "address")
     private BookStore bookStore;
 

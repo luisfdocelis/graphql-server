@@ -1,12 +1,12 @@
 package com.example.graphqlserver.entity;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +27,8 @@ public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "supplier_id")
+    private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -45,6 +45,6 @@ public class Supplier {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @ManyToMany(mappedBy = "suppliers")
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 }

@@ -43,17 +43,17 @@ type Mutation {
 
 type Book{
     id: Int
-    name: String
-    pageCount: Int
-    author: Author
+    name: String!
+    pageCount: Int!
+    author: Author!
     createDte: LocalDateTime
     updateDte: LocalDateTime
 }
 
 type Author{
     id: Int
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
     books: [Book],
     createDte: LocalDateTime
     updateDte: LocalDateTime
@@ -97,53 +97,52 @@ type Phone{
 }
 
 input BookRequest{
-    id: Int!
-    name: String
-    pageCount: Int
-    authorId: Int
+    id: Int
+    name: String!
+    pageCount: Int!
+    authorId: Int!
 }
 
 input AuthorRequest{
-    id: Int!
-    firstName: String
-    lastName: String
+    id: Int
+    firstName: String!
+    lastName: String!
 }
 
 input SigninRequest{
-    id: Int!
-    email: String
-    password: String
+    email: String!
+    password: String!
 }
 
 input SignUpRequest{
-    firstName: String
-    lastName: String
-    email: String
-    password: String
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
 }
 
 input BookStoreRequest{
-    id: Int!
-    name: String
-    address: Int!
+    id: Int
+    name: String!
+    address: Int
 }
 
 input AddressRequest{
-    id: Int!
-    street: String
-    primaryNumber: String
+    id: Int
+    street: String!
+    primaryNumber: String!
     internalNumber: String
     buildingName: String
-    locality: String
-    city: String
-    state: String
-    zip: String
-    bookstore: Int!
+    locality: String!
+    city: String!
+    state: String!
+    zip: String!
+    bookstore: Int
 }
 
 input PhoneRequest{
-    id: Int!
-    number: String
-    type: String
-    bookstore: Int!
+    id: Int
+    number: String!
+    type: String!
+    bookstore: Int
 }

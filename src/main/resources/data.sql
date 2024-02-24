@@ -140,7 +140,7 @@ SELECT DISTINCT FIRSTNAME, LASTNAME, create_dte FROM
    ) AS T;
 
 INSERT INTO AUTHOR (firstname , lastname, create_dte)
-SELECT DISTINCT  firstname , lastname, create_dte  from author_tmp ORDER BY 1;
+SELECT DISTINCT  firstname , lastname, CURRENT_TIMESTAMP from author_tmp ORDER BY 1;
 
 INSERT INTO BOOK ( AUTHOR_ID, NAME, PAGECOUNT, create_dte)
 SELECT DISTINCT AUTHOR.AUTHOR_ID, NAME, PAGECOUNT, T.create_dte  FROM

@@ -1,9 +1,9 @@
 package com.example.graphqlserver.service;
 
-import com.example.graphqlserver.dto.response.JwtAuthenticationResponse;
-import com.example.graphqlserver.entity.Role;
 import com.example.graphqlserver.dto.request.SignUpRequest;
 import com.example.graphqlserver.dto.request.SigninRequest;
+import com.example.graphqlserver.dto.response.JwtAuthenticationResponse;
+import com.example.graphqlserver.entity.Role;
 import com.example.graphqlserver.entity.User;
 import com.example.graphqlserver.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
